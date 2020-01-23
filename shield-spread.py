@@ -54,7 +54,7 @@ print(nieces)
 #Witnesses
 w13 = gen(n9,n10)
 w14 = gen(n11,n12)
-witnesses = [w1,w2]
+witnesses = [w13,w14]
 print(witnesses)
 
 #Judge and Sentence
