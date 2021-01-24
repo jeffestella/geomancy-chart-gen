@@ -36,6 +36,8 @@ const figures = [
     ['Populus',[0,0,0,0]]
 ];
 
+//IN: figure Array
+//OUT: figure Name string
 const nameFig = (figArray) => {
     let compareArrays = (arr1, arr2) => {
         for (let i = 0; i<4; i++) {
@@ -48,6 +50,16 @@ const nameFig = (figArray) => {
     for (let item of figures) {
         if (compareArrays(item[1],figArray)) {
             return item[0];
+        }
+    }
+}
+
+//IN: figure Name string
+//OUT: figure Array
+const getFig = (figName) => {
+    for (let fig of figures) {
+        if (fig[0] === figName) {
+            return fig[1];
         }
     }
 }
@@ -93,16 +105,112 @@ let chart = {
         this.d6 = genDaughter(this.mothers, 1);
         this.d7 = genDaughter(this.mothers, 2);
         this.d8 = genDaughter(this.mothers, 3);
-        this.daughters = [this.d5, this.d6, this.d7, this.d8];
         this.n9 = combineFigs(m1, m2);
         this.n10 = combineFigs(m3, m4);
         this.n11 = combineFigs(d5, d6);
         this.n12 = combineFigs(d7, d8);
-        this.nieces = [this.n9, this.n10, this.n11, this.n12];
         this.w13 = combineFigs(n9, n10);
         this.w14 = combineFigs(n11, n12);
-        this.witnesses = [w13, w14]
-        this.j15 = combineFigs(this.w13, this.w14);
-        this.s16 = combineFigs(this.j15, this.m1);
+        this.j15 = combineFigs(w13, w14);
+        this.s16 = combineFigs(j15, m1);
+    },
+    fillFigures: function () {
+        let figures = document.querySelectorAll('.figure');
+        for (let fig of figures) {
+            fig.textContent= `${this[fig.id]}`
+        }
     }
+}
+
+chart.fillChart();
+
+
+// *******DOM CODE START*********
+const elementText = () => {
+    let figs = document.querySelectorAll('.fig-row');
+    for (let fig of figs) {
+        fig.textContent = 'O'
+    }
+}
+elementText();
+
+//Toggles active/passive state on a mother's row
+const toggleFigRow = (row) => {
+    let classList = row.classList;
+    classList.toggle('active');
+    if (Array.from(classList).includes('active')) {
+        row.textContent='O';
+    } else {
+        row.textContent = 'O O';
+    }
+}
+
+//Updates non-mother figures according when mother figures change on click.
+//NEED TO CONTINUE WORKING ON THIS FXN
+const updateChart = () => {
+    const selectMother = (id) => {
+        return document.querySelector(`#${id}`);
+    }
+    let m1 = selectMother('m1');
+    let m2 = selectMother('m2');
+    let m3 = selectMother('m3');
+    let m4 = selectMother('m4');
+    console.log(m1);
+}
+
+//Adds event listeners to mothers' rows
+const setToggleEvents = () => {
+    let mothers = document.querySelectorAll('.mother');
+    for (let fig of mothers) {
+        let figRows = fig.querySelectorAll('.fig-row');
+        for (let row of figRows) {
+            row.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleFigRow(e.target);
+            })
+        }
+        
+    }
+}
+setToggleEvents();
+
+
+//Sets all mothers' rows to passive state
+const resetMothers = () => {
+    let mothers = document.querySelectorAll('.mother');
+    for (let mother of mothers) {
+        let figRows = mother.querySelectorAll('.fig-row');
+        for (let row of figRows) {
+            if (Array.from(row.classList).includes('active')) {
+                row.classList.remove('active');
+                row.textContent = 'O O'
+            }
+        }
+    }
+}
+
+//Randomizes active/passive states on mothers' rows
+const castMothers = () => {
+    const selectMother = (id) => {
+        return document.querySelector(`#${id}`);
+    }
+    const selectMotherRows = (mother) => {
+        return mother.querySelectorAll('.fig-row');
+    }
+    let motherRows = [];
+    let m1 = selectMother('m1');
+    motherRows.append(Array.from(selectMotherRows(m1)));
+    let m2 = selectMother('m2');
+    motherRows.append(Array.from(selectMotherRows(m2)));
+    let m3 = selectMother('m3');
+    motherRows.append(Array.from(selectMotherRows(m3)));
+    let m4 = selectMother('m4');
+    motherRows.append(Array.from(selectMotherRows(m4)));
+    for (let mom in motherRows) {
+        for (let row in mom) {
+
+        }
+    }
+    m1Rows.classList.remove('active')
+
 }

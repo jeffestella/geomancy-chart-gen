@@ -6,32 +6,116 @@
 
     </head>
     <body>
-        <h1>Geomancy Shield Spread</h1>
-        <button>Generate Mothers</button>
-        <div id="first-row">
-            <div class="figure" id="d8">Daughter 8</div> 
-            <div class="figure" id="d7">Daughter 7</div> 
-            <div class="figure" id="d6">Daughter 6</div> 
-            <div class="figure" id="d5">Daughter 5</div> 
-            <div class="figure" id="m4">Mother 4</div> 
-            <div class="figure" id="m3">Mother 3</div> 
-            <div class="figure" id="m2">Mother 2</div> 
-            <div class="figure" id="m1">Mother 1</div>
-        </div>
-        <div id="second-row">
-            <div class="figure" id="n12">Niece 12</div> 
-            <div class="figure" id="n11">Niece 11</div> 
-            <div class="figure" id="n10">Niece 10</div> 
-            <div class="figure" id="n9">Niece 9</div> 
-        </div>
-        <div id="third-row">
-            <div class="figure" id="w14">Witness 14</div> 
-            <div class="figure" id="w13">Witness 13</div> 
-        </div>
-        <div id="fourth-row">
-            <div class="figure" id="j15">Judge</div> 
-            <div class="figure" id="s16">Sentence</div> 
-        </div>
+        <h1>Shield Spread</h1>
+        <button>Cast Mothers</button>
+        <section id="chart-whole">
+            <section class="chart-row" id="top-row">
+                <section class="figure" id="d8">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section> 
+                <section class="figure" id="d7">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="d6">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="d5">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure mother" id="m4">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure mother" id="m3">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure mother" id="m2">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure mother" id="m1">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+            </section>
+            <section class="chart-row" id="niece-row">
+                <section class="figure" id="n12">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="n11">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="n10">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="n9">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+            </section>
+            <section class="chart-row" id="witness-row">
+                <section class="figure" id="w14">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+                <section class="figure" id="w13">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+            </section>
+            <section class="chart-row" id="judge-row">
+                <section class="figure" id="j15">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+            </section>
+            <section class="chart-row" id="sentence-row">
+                <section class="figure" id="s16">
+                    <div class="fig-row active row1"></div>
+                    <div class="fig-row active row2"></div>
+                    <div class="fig-row active row3"></div>
+                    <div class="fig-row active row4"></div>
+                </section>
+            </section>
+        </section>
         <script src="spread.js"></script>
     </body>
 </html>
