@@ -37,30 +37,34 @@ const figures = [
 ];
 
 const nameFig = (figArray) => {
-    const compareArrays = (arr1, arr2) => {
-        let comparison = [];
-        for (let i = 0, i<4, i++) {
-            if (arr1[i] === arr2[i]) {
-                comparison.push(true);
-            } else {
-                comparison.push(false);
-            }
+    let compareArrays = (arr1, arr2) => {
+        for (let i = 0; i<4; i++) {
+            if (arr1[i] !== arr2[i]) {
+                return false;
+            };
         };
-        comparison.some(item => )
-    };
-    console.log(figures.find( item => item[1]===figArray));
-};
+        return true;
+    }
+    for (let item of figures) {
+        if (compareArrays(item[1],figArray)) {
+            return item[0];
+        }
+    }
+}
+
+//IN: number
+//OUT: returns 1 if num is odd, 0 if num is even
 const check = (num) => { 
-    if (num==1) {
-        return 1
-    } else if (num%2<1) {
+    if (num%2<1) {
         return 0
     } else {
         return 1
     }
 };
 
-const mixFigs = (fig1, fig2) => {
+//IN: two figure arrays to combine
+//OUT: new combined figure array
+const combineFigs = (fig1, fig2) => {
     let newFig = []
     for (i = 0; i<4; i++) {
         newFig.push(check(fig1[i]+fig2[i]))
@@ -68,64 +72,37 @@ const mixFigs = (fig1, fig2) => {
     return newFig
 };
 
-const genDaughter = (mothers_list, ind) => {
+//IN: array of mother figure arrays, row from which to generate daughter
+//OUT: daughter figure array
+const genDaughter = (mothers_list, row) => {
     let daughter = [];
     for (i = 0; i<4; i++) {
-        daughter.push(mothers_list[i][ind])
+        daughter.push(mothers_list[i][row])
     };
     return daughter
 };
 
 let chart = {
-    m1: '',
-    m2: '',
-    m3: '',
-    m4: '',
-    d5: '',
-    d6: '',
-    d7: '',
-    d8: '',
-    n9: '',
-    n10: '',
-    n11: '',
-    n12: '',
-    w13: '',
-    w14: '',
-    j15: '',
-    s16: '',
+    fillChart: function () {
+        this.m1 = [1, 1, 0, 0];
+        this.m2 = [0, 1, 0, 1];
+        this.m3 = [0, 0, 0, 0];
+        this.m4 = [1, 0, 1, 1];
+        this.mothers = [this.m1, this.m2, this.m3, this.m4];
+        this.d5 = genDaughter(this.mothers, 0);
+        this.d6 = genDaughter(this.mothers, 1);
+        this.d7 = genDaughter(this.mothers, 2);
+        this.d8 = genDaughter(this.mothers, 3);
+        this.daughters = [this.d5, this.d6, this.d7, this.d8];
+        this.n9 = combineFigs(m1, m2);
+        this.n10 = combineFigs(m3, m4);
+        this.n11 = combineFigs(d5, d6);
+        this.n12 = combineFigs(d7, d8);
+        this.nieces = [this.n9, this.n10, this.n11, this.n12];
+        this.w13 = combineFigs(n9, n10);
+        this.w14 = combineFigs(n11, n12);
+        this.witnesses = [w13, w14]
+        this.j15 = combineFigs(this.w13, this.w14);
+        this.s16 = combineFigs(this.j15, this.m1);
+    }
 }
-
-chart.m1 = [1,1,0,0];
-chart.m2 = [0,1,0,1];
-chart.m3 = [0,0,0,0];
-chart.m4 = [1,0,1,1];
-
-for (let fig in chart) {
-    console.log(chart[fig]);
-}
-
-// let d5 = genDaughter(mothers,0);
-// let d6 = genDaughter(mothers,1);
-// let d7 = genDaughter(mothers,2);
-// let d8 = genDaughter(mothers,3);
-// let daughters = [d5,d6,d7,d8];
-// console.log(daughters);
-
-
-// let n9 = mixFigs(m1,m2);
-// let n10 = mixFigs(m3,m4);
-// let n11 = mixFigs(d5,d6);
-// let n12 = mixFigs(d7,d8);
-// let nieces = [n9,n10,n11,n12];
-// console.log(nieces);
-
-// let w13 = mixFigs(n9,n10);
-// let w14 = mixFigs(n11,n12);
-// let witnesses = [w13,w14]
-// console.log(witnesses);
-
-// let j15 = mixFigs(w13,w14);
-// console.log(j15);
-
-// let s16 = mixFigs(j15,m1);
-// console.log(s16);
