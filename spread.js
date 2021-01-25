@@ -122,10 +122,39 @@ let chart = {
     }
 }
 
-chart.fillChart();
+// chart.fillChart();
 
-
+let chartElements = {
+    m1:{},
+    m2:{},
+    m3:{},
+    m4:{},
+    d5:{},
+    d6:{},
+    d7:{},
+    d8:{},
+    n9:{},
+    n10:{},
+    n11:{},
+    n12:{},
+    w13:{},
+    w14:{},
+    j15:{},
+    s16:{}
+}
 // *******DOM CODE START*********
+
+//Populates each key in the chartElements object 
+//Each key is a figure on the chart.
+//Each key contains the figure's <section> element and children row <section>s
+//NEED TO WORK ON THIS FXN
+const fillChartElements = (key) => {
+
+}
+
+//Initializes all figure rows with a single dot for textContent
+//NOTE: matches with all fig-rows, which all have the 'active'
+//class by default in index.html
 const elementText = () => {
     let figs = document.querySelectorAll('.fig-row');
     for (let fig of figs) {
@@ -134,28 +163,20 @@ const elementText = () => {
 }
 elementText();
 
+//Checks if a row is active by checking for the 'active' class 
+//from the row's classList.
+const isActive = (row) => {
+    return Array.from(row.classList).includes('active');
+}
+
 //Toggles active/passive state on a mother's row
 const toggleFigRow = (row) => {
-    let classList = row.classList;
-    classList.toggle('active');
-    if (Array.from(classList).includes('active')) {
+    row.classList.toggle('active');
+    if (isActive(row)) {
         row.textContent='O';
     } else {
         row.textContent = 'O O';
     }
-}
-
-//Updates non-mother figures according when mother figures change on click.
-//NEED TO CONTINUE WORKING ON THIS FXN
-const updateChart = () => {
-    const selectMother = (id) => {
-        return document.querySelector(`#${id}`);
-    }
-    let m1 = selectMother('m1');
-    let m2 = selectMother('m2');
-    let m3 = selectMother('m3');
-    let m4 = selectMother('m4');
-    console.log(m1);
 }
 
 //Adds event listeners to mothers' rows
@@ -169,11 +190,47 @@ const setToggleEvents = () => {
                 toggleFigRow(e.target);
             })
         }
-        
+
     }
 }
 setToggleEvents();
 
+//Combines rows active/passive states and returns new state
+const mixed = (row1, row2) => {
+    if (isActive(row1)===isActive(row2)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//Updates non-mother figures according when mother figures change on click.
+//NEED TO CONTINUE WORKING ON THIS FXN
+const updateChart = () => {
+    const selectMother = (id) => {
+        return document.querySelector(`#${id}`);
+    }
+    const selectMotherRows = (mother) => {
+        return mother.querySelectorAll('.fig-row');
+    }
+    let m1 = selectMother('m1');
+    let m2 = selectMother('m2');
+    let m3 = selectMother('m3');
+    let m4 = selectMother('m4');
+    let motherRows = [];
+    motherRows.push(Array.from(selectMotherRows(m1)));
+    motherRows.push(Array.from(selectMotherRows(m2)));
+    motherRows.push(Array.from(selectMotherRows(m3)));
+    motherRows.push(Array.from(selectMotherRows(m4)));
+    const genDaughter = (rowNumber) =>{
+        let daughterRows = [];
+        for (let mother of motherRows) {
+            if (isActive(mother)) {
+
+            }
+        }
+    }
+}
 
 //Sets all mothers' rows to passive state
 const resetMothers = () => {
@@ -191,6 +248,7 @@ const resetMothers = () => {
 
 //Randomizes active/passive states on mothers' rows
 const castMothers = () => {
+    resetMothers();
     const selectMother = (id) => {
         return document.querySelector(`#${id}`);
     }
@@ -199,18 +257,27 @@ const castMothers = () => {
     }
     let motherRows = [];
     let m1 = selectMother('m1');
-    motherRows.append(Array.from(selectMotherRows(m1)));
+    motherRows.push(Array.from(selectMotherRows(m1)));
     let m2 = selectMother('m2');
-    motherRows.append(Array.from(selectMotherRows(m2)));
+    motherRows.push(Array.from(selectMotherRows(m2)));
     let m3 = selectMother('m3');
-    motherRows.append(Array.from(selectMotherRows(m3)));
+    motherRows.push(Array.from(selectMotherRows(m3)));
     let m4 = selectMother('m4');
-    motherRows.append(Array.from(selectMotherRows(m4)));
-    for (let mom in motherRows) {
-        for (let row in mom) {
-
+    motherRows.push(Array.from(selectMotherRows(m4)));
+    for (let mom of motherRows) {
+        for (let row of mom) {
+            if (Math.random() > .5) {
+                toggleFigRow(row);
+            }
         }
     }
-    m1Rows.classList.remove('active')
-
 }
+
+//Adds event listener to Cast Mothers button
+const enableCastBtn = () => {
+    let castBtn = document.querySelector('#cast');
+    castBtn.addEventListener('click', () => {
+        castMothers();
+    })
+}
+enableCastBtn();
