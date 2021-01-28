@@ -16,16 +16,31 @@ class Row {
     }
     toggleState() {
         this.active = !this.active;
-        if (this.active) {
-            this.html.textContent = 'O';
-        } else {
-            this.html.textContent = 'O O'
-        }
+        this.updateContent();
+    }
+    matchState(targetRow) {
+        this.active = targetRow.active;
+        this.updateContent();
+    }
+    setActive() {
+        this.active = true;
+        this.updateContent();
+    }
+    setPassive() {
+        this.active = false;
+        this.updateContent();
     }
     addClickListener() {
         this.html.addEventListener('click', () => {
             this.toggleState();
         })
+    }
+    updateContent() {
+        if (this.active) {
+            this.html.textContent = 'O';
+        } else {
+            this.html.textContent = 'O O'
+        }
     }
 }
 
@@ -34,11 +49,11 @@ class Figure {
         this.name = name;
         this.html = this.getFigElement(this.name);
         this.isMother = isMother;
-        this.row1 = new Row(this.getRowElement(1), this.isMother);
-        this.row2 = new Row(this.getRowElement(2), this.isMother);
-        this.row3 = new Row(this.getRowElement(3), this.isMother);
-        this.row4 = new Row(this.getRowElement(4), this.isMother);
-        this.rowList = [this.row1, this.row2, this.row3, this.row4]
+        this.rowList = [];
+        for (let i of range(1,4)) {
+            this[`row${i}`] = new Row(this.getRowElement(i), this.isMother);
+            this.rowList.push(this[`row${i}`]);
+        }
     }
     getFigElement(name) {
         return document.querySelector(`#${name}`);
@@ -67,7 +82,9 @@ class ShieldChart {
         for (let fig of this.motherList) {
             for (let row of fig.rowList) {
                 if (Math.random() > 0.5) {
-                    row.toggleState();
+                    row.setActive();
+                } else {
+                    row.setPassive();
                 }
             }
         }
@@ -80,11 +97,24 @@ class ShieldChart {
     }
     fillChart() {
         //Access mothers and construct daughters
-        //make inner function to compare two row states and set daughter row state based on that
+        
+        //make method to compare two row states and set daughter row state based on that
+    }
+    constructDaughter(daughterNum) { //num = integer 5-8
+        //iterate thru each row of each daughter figure, setting the row state to its corresponding mother row
+        let daughterList = [this.f5, this.f6, this.f7, this.f8]
+        for (let daughter of daughterList) {
+            for (let row of daughter) {
+
+            }
+        }
+        let motherNum = daughterNum - 4;
+        this[`f${daughterNum}`][`row${1}`].active = this[`f${motherNum}`][`row${1}`].active;
     }
 }
 
 const mainShieldChart = new ShieldChart;
 
 //TO DO
-// ***Make update chart method to execute upon click events on mother rows
+//Make update chart method to execute upon click events on mother rows
+//Continue fillChart method
