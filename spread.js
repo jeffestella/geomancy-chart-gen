@@ -72,7 +72,6 @@ class Figure {
 
 class ShieldChart {
     constructor() {
-        this.figureList = [];
         this.motherList = [];
         this.daughterList = [];
         for (let i of range(1, 16)) {
@@ -80,7 +79,6 @@ class ShieldChart {
             let isMother = i<5 ? true : false;
             let isDaughter = [5,6,7,8].includes(i) ? true : false;
             this[figName] = new Figure(figName);
-            this.figureList.push(this[figName]);
             if (isMother) {
                 this.motherList.push(this[figName]);
             } else if (isDaughter) {
