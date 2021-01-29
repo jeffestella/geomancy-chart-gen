@@ -13,11 +13,11 @@ class Row {
     }
     toggleState() {
         this.active = !this.active;
-        this.updateContent();
+        this.updateDots();
     }
     matchState(targetRow) {
         this.active = targetRow.active;
-        this.updateContent();
+        this.updateDots();
     }
     mixState(rowA, rowB) {
         if (rowA.active === rowB.active) {
@@ -28,11 +28,11 @@ class Row {
     }
     setActive() {
         this.active = true;
-        this.updateContent();
+        this.updateDots();
     }
     setPassive() {
         this.active = false;
-        this.updateContent();
+        this.updateDots();
     }
     updateDots() {
         if (this.active) {
@@ -65,7 +65,7 @@ class Figure {
         for (let i of range(1,4)) {
             let row = this[`row${i}`];
             row.mixState(figARows[i - 1], figBRows[i - 1]);
-            row.updateContent();
+            row.updateDots();
         }
     }
 }
@@ -131,7 +131,7 @@ class ShieldChart {
             let mothersRow = daughterNum - 4;
             for (let rowNum of range(1, 4)) {
                 daughter[`row${rowNum}`].matchState(this[`f${rowNum}`][`row${mothersRow}`]);
-                daughter[`row${rowNum}`].updateContent();
+                daughter[`row${rowNum}`].updateDots();
             }
         }
     }
