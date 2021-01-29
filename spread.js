@@ -44,7 +44,7 @@ class Row {
 }
 
 class Figure {
-    constructor(name, isMother=false) { //name = string
+    constructor(name) { //name = string
         this.name = name;
         this.html = this.getFigElement(this.name);
         this.rowList = [];
@@ -77,13 +77,13 @@ class ShieldChart {
         this.daughterList = [];
         for (let i of range(1, 16)) {
             let figName = `f${i}`;
-            let checkMother = i<5 ? true : false;
-            let checkDaughter = [5,6,7,8].includes(i) ? true : false;
-            this[figName] = new Figure(figName, checkMother);
+            let isMother = i<5 ? true : false;
+            let isDaughter = [5,6,7,8].includes(i) ? true : false;
+            this[figName] = new Figure(figName);
             this.figureList.push(this[figName]);
-            if (checkMother) {
+            if (isMother) {
                 this.motherList.push(this[figName]);
-            } else if (checkDaughter) {
+            } else if (isDaughter) {
                 this.daughterList.push(this[figName]);
             }
         }
