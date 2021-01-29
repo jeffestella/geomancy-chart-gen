@@ -34,7 +34,7 @@ class Row {
         this.active = false;
         this.updateContent();
     }
-    updateContent() {
+    updateDots() {
         if (this.active) {
             this.html.textContent = 'O';
         } else {
@@ -140,7 +140,7 @@ class ShieldChart {
             for (let row of mother.rowList) {
                 row.html.addEventListener('click', () => {
                     row.toggleState();
-                    row.updateContent();
+                    row.updateDots();
                     this.fillChart();
                 })
             }
