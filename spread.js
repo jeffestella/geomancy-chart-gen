@@ -101,15 +101,15 @@ class ShieldChart {
         //make method to compare two row states and set daughter row state based on that
     }
     constructDaughter(daughterNum) { //num = integer 5-8
-        //iterate thru each row of each daughter figure, setting the row state to its corresponding mother row
-        let daughterList = [this.f5, this.f6, this.f7, this.f8]
-        for (let daughter of daughterList) {
-            for (let row of daughter) {
-
-            }
+        let daughter = this[`f${daughterNum}`];
+        let mothersRow = daughterNum - 4;
+        for (let row in daughter.rowList) {
+            row.active = 
         }
-        let motherNum = daughterNum - 4;
-        this[`f${daughterNum}`][`row${1}`].active = this[`f${motherNum}`][`row${1}`].active;
+        this[`f${daughterNum}`].row1.active = this.f1[`row${mothersRow}`].active;
+        this[`f${daughterNum}`].row2.active = this.f2[`row${mothersRow}`].active;
+        this[`f${daughterNum}`].row3.active = this.f3[`row${mothersRow}`].active;
+        this[`f${daughterNum}`].row4.active = this.f4[`row${mothersRow}`].active;
     }
 }
 
