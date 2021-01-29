@@ -74,15 +74,23 @@ class ShieldChart {
     constructor() {
         this.motherList = [];
         this.daughterList = [];
+        this.nieceList = [];
+        this.witnessList = [];
         for (let i of range(1, 16)) {
             let figName = `f${i}`;
             let isMother = i<5 ? true : false;
-            let isDaughter = [5,6,7,8].includes(i) ? true : false;
+            let isDaughter = [5,6,7,8].includes(i);
+            let isNiece = [9,10,11,12].includes(i);
+            let isWitness = [13,14].includes(i);
             this[figName] = new Figure(figName);
             if (isMother) {
                 this.motherList.push(this[figName]);
             } else if (isDaughter) {
                 this.daughterList.push(this[figName]);
+            } else if (isNiece) {
+                this.nieceList.push(this[figName]);
+            } else if (isWitness) {
+                this.witnessList.push(this[figName]);
             }
         }
         this.activateCastBtn();
@@ -143,4 +151,5 @@ class ShieldChart {
 const mainShieldChart = new ShieldChart;
 
 //TO DO
+//Add feature to highlight Via Punti. (Already separated the chart by mothers+daughters, nieces, witnesses to help with this)
 //Figure out how to name each figure's current occupied geomantic figure
