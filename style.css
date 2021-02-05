@@ -1,11 +1,29 @@
-#chart {
+@media only screen and (max-width: 600px) {
+    #chart-whole {
+        width: 600px
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #chart-whole {
+        width: 800px
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #chart-whole {
+        width: 1200px
+    }
+}
+
+#chart-whole {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
     justify-content: space-between;
-    max-width: 500px;
-    min-width: 500px;
+    /* max-width: 500px; */
+    /* min-width: 500px; */
 }
 
 .figure {
@@ -38,25 +56,25 @@
 
 #top-row .figure {
     background-color: purple;
-    width: 12.5vw;
+    width: 12.5%;
 
 }
 
 #niece-row .figure {
     background-color: green;
-    width: 25vw;
+    width: 25%;
     
 }
 
 #witness-row .figure {
     background-color: maroon;
-    width: 50vw;
+    width: 50%;
     
 }
 
 #judge-row .figure {
     background-color: black;
-    width: 100vw;
+    width: 100%;
     
 }
 
