@@ -1,18 +1,18 @@
 @media only screen and (min-width: 769px) {
-    #chart-whole {
+    #chart-whole, #chart-header {
         width:70vw;
         max-width: 800px;
     }
 }
 
 @media only screen and (min-width:321px) and (max-width: 768px) {
-    #chart-whole {
+    #chart-whole, #chart-header {
         width: 90vw;
     }
 }
 
 @media only screen and (max-width: 320px) {
-    #chart-whole {
+    #chart-whole, #chart-header {
         width: 100vw;
     }
 }
@@ -40,38 +40,33 @@ body {
 .chart-row {
     display: flex;
     flex-direction: row;
-    width: 1vw
     height: 100%;
     justify-content: space-around;
 }
 
 #sentence-row {
     display:flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+    flex-direction: row-reverse;
     justify-content: right;
+    width: 100%;
 }
 
 #top-row .figure {
     width: 12.5%;
-
 }
 
 #niece-row .figure {
-    background-color: lightgoldenrodyellow;
+    background-color: lightgrey;
     width: 25%;
-    
 }
 
 #witness-row .figure {
-    background-color: lightskyblue;
+    background-color: darkgrey;
     width: 50%;
-    
 }
 
 #judge-row .figure {
-    background-color: lightseagreen;
+    background-color: grey;
     width: 100%;
     
 }
@@ -80,16 +75,16 @@ body {
     width: 25%;
 }
 
+#chart-header {
+    display: flex;
+    justify-content: space-between;
+
+
+    /* border: 2px solid red; */
+}
+
 #cast {
-    
+    height: 50%;
+    align-self: center;
+    /* justify-self: flex-end; */
 }
-
-.fig-row {
-    width: 70%;
-
-}
-
-/* .active {
-    width: 20%;
-    background-color: white;
-} */

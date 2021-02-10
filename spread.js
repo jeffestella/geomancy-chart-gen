@@ -60,8 +60,8 @@ class Figure {
         return this.html.querySelector(`.row${rowNum}`);
     }
     mixRows(figA, figB) {
-        let figARows = figA.rowList;
-        let figBRows = figB.rowList;
+        const figARows = figA.rowList;
+        const figBRows = figB.rowList;
         for (let i of range(1,4)) {
             let row = this[`row${i}`];
             row.mixState(figARows[i - 1], figBRows[i - 1]);
@@ -77,11 +77,11 @@ class ShieldChart {
         this.nieceList = [];
         this.witnessList = [];
         for (let i of range(1, 16)) {
-            let figName = `f${i}`;
-            let isMother = i<5 ? true : false;
-            let isDaughter = [5,6,7,8].includes(i);
-            let isNiece = [9,10,11,12].includes(i);
-            let isWitness = [13,14].includes(i);
+            const figName = `f${i}`;
+            const isMother = i<5 ? true : false;
+            const isDaughter = [5,6,7,8].includes(i);
+            const isNiece = [9,10,11,12].includes(i);
+            const isWitness = [13,14].includes(i);
             this[figName] = new Figure(figName);
             if (isMother) {
                 this.motherList.push(this[figName]);
@@ -109,7 +109,7 @@ class ShieldChart {
         this.fillChart();
     }
     activateCastBtn() {
-        let btn = document.querySelector('#cast');
+        const btn = document.querySelector('#cast');
         btn.addEventListener('click', () => {
             this.castMothers();
         })
@@ -127,8 +127,8 @@ class ShieldChart {
     }
     constructDaughters() {
         for (let daughterNum of range(5,8)) {
-            let daughter = this[`f${daughterNum}`];
-            let mothersRow = daughterNum - 4;
+            const daughter = this[`f${daughterNum}`];
+            const mothersRow = daughterNum - 4;
             for (let rowNum of range(1, 4)) {
                 daughter[`row${rowNum}`].matchState(this[`f${rowNum}`][`row${mothersRow}`]);
                 daughter[`row${rowNum}`].updateDots();
